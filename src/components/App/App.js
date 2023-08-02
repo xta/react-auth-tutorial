@@ -4,11 +4,12 @@ import { BrowserRouter, Route, Routes, Link } from 'react-router-dom';
 import useToken from './useToken'
 
 import Login from '../Login/Login';
+import Logout from '../Logout/Logout';
 import { Dashboard } from '../Dashboard/Dashboard';
 import { Preferences } from '../Preferences/Preferences';
 
 function App() {
-  const { token, setToken } = useToken()
+  const { token, clear, setToken } = useToken()
 
   if (!token) {
     return <Login setToken={setToken} />
@@ -20,6 +21,8 @@ function App() {
         <h1><Link to='/'>Home</Link></h1>
         <Link to='/dashboard'>Dashboard</Link> |&nbsp;
         <Link to='/preferences'>Preferences</Link>
+
+        {(token && <Logout clear={clear} />)}
 
         <Routes>
           <Route path="/dashboard" element={<Dashboard />}>
