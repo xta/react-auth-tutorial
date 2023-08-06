@@ -1,7 +1,13 @@
 import React from 'react';
 
-export default function Logout({ clear }) {
+export default function Logout({ clear, setLoggedIn }) {
+
+    const clearUser = () => {
+        clear()
+        setLoggedIn(false)
+    }
+
     return (
-        <button onClick={() => clear()}>Logout</button>
+        <button onClick={() => clearUser()}>Logout</button>
     )
 }

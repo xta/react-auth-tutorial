@@ -1,12 +1,14 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import useToken from '../App/useToken'
 
 import LoginButton from '../Login/Button';
 import Logout from '../Logout/Logout';
 
-export default function Header() {
+export default function Header({ loggedIn, setLoggedIn }) {
+    // TODO: loggedIn & token are redundant. don't use both.
+    // also loggedIn is the even more naive (not functional) user auth state
     const { token, clear } = useToken()
 
     return (
@@ -19,8 +21,8 @@ export default function Header() {
                 </div>
 
                 <div className='navbar-end'>
-                    {(!token && <LoginButton />)}
-                    {(token && <Logout clear={clear} />)}
+                    {(!loggedIn && <LoginButton />)}
+                    {(loggedIn && <Logout clear={clear} setLoggedIn={setLoggedIn} />)}
                 </div>
             </nav>
         </div>

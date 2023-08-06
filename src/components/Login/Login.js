@@ -16,7 +16,7 @@ async function loginUser(credentials) {
         .then(data => data.json())
 }
 
-export default function Login() {
+export default function Login({ setLoggedIn }) {
     const [username, setUserName] = useState();
     const [password, setPassword] = useState();
 
@@ -30,6 +30,7 @@ export default function Login() {
             password
         });
         setToken(token);
+        setLoggedIn(true)
         navigate('/dashboard')
     }
 
