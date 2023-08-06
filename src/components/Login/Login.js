@@ -1,5 +1,8 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import { useNavigate } from "react-router-dom";
+
+import useToken from '../App/useToken'
+
 import './Login.css';
 
 async function loginUser(credentials) {
@@ -13,9 +16,12 @@ async function loginUser(credentials) {
         .then(data => data.json())
 }
 
-export default function Login({ setToken }) {
+export default function Login() {
     const [username, setUserName] = useState();
     const [password, setPassword] = useState();
+
+    const { setToken } = useToken()
+    const navigate = useNavigate()
 
     const handleSubmit = async e => {
         e.preventDefault();
@@ -24,6 +30,7 @@ export default function Login({ setToken }) {
             password
         });
         setToken(token);
+        navigate('/dashboard')
     }
 
     return (
@@ -39,13 +46,9 @@ export default function Login({ setToken }) {
                     <input type="password" onChange={e => setPassword(e.target.value)} />
                 </label>
                 <div>
-                    <button type="submit">Submit</button>
+                    <button className='button' type="submit">Submit</button>
                 </div>
             </form>
         </div>
     )
-}
-
-Login.propTypes = {
-    setToken: PropTypes.func.isRequired
 }

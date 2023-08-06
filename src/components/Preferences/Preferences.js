@@ -2,6 +2,9 @@ import React from 'react';
 
 export const Preferences = () => {
     return (
-        <h2>Preferences</h2>
+        <>
+            <h1 className='title'>Preferences</h1>
+            <p>This is the preferences page.</p>
+        </>
     );
 }

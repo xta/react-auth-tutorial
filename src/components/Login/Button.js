@@ -1,8 +1,11 @@
 import React from 'react';
+import { useNavigate } from "react-router-dom";
 
-function LoginButton({ onPress }) {
+function LoginButton() {
+    const navigate = useNavigate();
+
     return (
-        <button onClick={onPress}>Login</button>
+        <button className='button is-primary' onClick={() => navigate('/login')}>Login</button>
     )
 }
 
