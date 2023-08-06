@@ -4,13 +4,13 @@ export default function useToken() {
     const [token, setToken] = useState();
 
     useEffect(() => {
+        function checkToken() {
+            const value = getToken()
+            setToken(value)
+        }
+
         checkToken()
     }, [token])
-
-    function checkToken() {
-        const value = getToken()
-        setToken(value)
-    }
 
     function getToken() {
         const tokenString = localStorage.getItem('token');
